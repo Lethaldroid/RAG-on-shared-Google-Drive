@@ -1,0 +1,10 @@
+pysqlite3-binary
+langchain
+langchain-community
+transformers
+sentence-transformers
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+gspread
+chromadb

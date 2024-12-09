@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - 8000:8000
+  embedding-service:
+    build: ./embedding_service
+    depends_on:
+      - chromadb
+    ports: 
+      - 8001:8001  # Expose a port for the embedding service (if needed)
+  model-service:
+    build: ./model_service
+    runtime: nvidia
+    depends_on:
+      - embedding-service
+    ports:
+      - 8002:8002  # Expose a port for the model service (if needed)
+    environment:
+      - HUGGINGFACE_HUB_TOKEN=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
+
+volumes:
+  chromadb_data:
